@@ -6,6 +6,7 @@ var gulp = require('gulp'),
     cleancss = require('gulp-clean-css'),
     browserSync = require('browser-sync').create(),
     browserify = require('gulp-browserify'),
+    del = require('del'),
     htmlmin = require('gulp-htmlmin'),
     rename = require('gulp-rename');
 
@@ -55,16 +56,25 @@ gulp.task("browser-sync",function(){
   })
 })
 
+gulp.task("clean", function(){
+  del("dist");
+});
+
+
 gulp.task("prod", [
   "minifyScript",
-  "css"
+  "css",
+  "htmltask",
+  "clean"
 ], function() {
-  console.log("this is the default task!")
-})
+  return gulp.src(["site/css/index.css","site/js/index.js", "site/index.html","site/imgs/**","site/fonts/**"], {base:"./"})
+  .pipe(gulp.dest('dist'));
+  console.log("ready to go live baby!")
+});
 
 gulp.task("dev", [
   "browser-sync"
 ], function() {
   gulp.watch(["build/js/*.js","build/css/*.css","build/*.html"], ['watch']);
   console.log("happy coding!")
-})
+});
