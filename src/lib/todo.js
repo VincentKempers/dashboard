@@ -30,7 +30,7 @@ function setLocalStorage() {
 function getLocalStorage() {
   var storedString = localStorage.getItem('toDo').split(",");
   storedString.forEach(function (element) {
-    ul.insertAdjacentHTML('beforeend', `<li>${element}</li>`);
+    ul.insertAdjacentHTML('beforeend', `<li> ${element} </li>`);
   })
 }
 
