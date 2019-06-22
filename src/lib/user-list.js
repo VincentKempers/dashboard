@@ -4,7 +4,9 @@ var username = 'VincentKempers';
 request.open('GET', 'https://api.github.com/users/VincentKempers');
 
 request.onload = function () {
+
   var data = JSON.parse(request.responseText);
+
   result.innerHTML = `
       <div class="row">
         <div class="col-9">
@@ -22,4 +24,5 @@ request.onload = function () {
       </div>
     `;
 }
+
 request.send();
